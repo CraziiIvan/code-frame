@@ -14,7 +14,7 @@ function RadioTab({ options, state, action, id }: TRadioTAbProps) {
 
   return (
     <div>
-      <label className=" text-neutral-400 text-sm">
+      <label className=" text-neutral-400 text-xs">
         {id.charAt(0).toLocaleUpperCase() + id.slice(1)}
       </label>
       <ul className="p-1 mt-1 w-full bg-neutral-100 border border-neutral-200 rounded-xl flex">

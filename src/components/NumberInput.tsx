@@ -12,7 +12,7 @@ function NumberInput({ id, state, action }: TNumberInputProps) {
 
   return (
     <div>
-      <span className=" text-neutral-400 text-sm">
+      <span className=" text-neutral-400 text-xs">
         {id.charAt(0).toLocaleUpperCase() + id.slice(1)}
       </span>
       <input

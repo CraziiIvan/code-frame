@@ -1,29 +1,32 @@
 import { FilePng, FileSvg } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 function Button() {
   const [visible, setVisible] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null)
   const dropDownRef = useRef<HTMLDivElement>(null)
 
-    function outsideClickHandle(e: MouseEvent) {
-        if(e.target !== dropDownRef.current && e.target !== buttonRef.current) {
-            setVisible(false)
-        }
-    }
+    // function outsideClickHandle(e: MouseEvent) {
+    //     if(e.target !== dropDownRef.current && e.target !== buttonRef.current) {
+    //         setVisible(false)
+    //     }
+    // }
 
-    useEffect(() => {
-        window.addEventListener("click", outsideClickHandle)
-    },[])
+    // useEffect(() => {
+    //     window.addEventListener("click", outsideClickHandle)
+    // },[])
+
+    useOutsideClick({dispatch: setVisible,  refs: [buttonRef, dropDownRef]})
 
   return (
     <div className=" relative">
       <button
       ref={buttonRef}
         className={`pt-1.5 pb-2 px-5 bg-neutral-800 rounded-xl text-neutral-100 font-medium flex items-center ring-offset-1 ${
-          visible && "ring-1 ring-neutral-200"
-        } hover:ring-1 hover:ring-neutral-200 hover:text-white transition-all ease-out duration-200`}
+          visible && "ring-1 ring-neutral-300"
+        } hover:ring-1 hover:ring-neutral-300 hover:text-white transition-all ease-out duration-200`}
         onClick={() => setVisible(!visible)}
       >
         Export

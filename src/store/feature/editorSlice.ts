@@ -9,6 +9,7 @@ type TInitialValue = {
     darkMode: boolean
     radious: number
     language: string
+    font: string
 }
 
 const initialState: TInitialValue = {
@@ -18,7 +19,8 @@ const initialState: TInitialValue = {
     bar: "Mac Os",
     darkMode: false,
     radious: 20,
-    language: "Javascript"
+    language: "Javascript",
+    font: "Fira code"
 }
 
 export const editorSlice = createSlice({
@@ -46,8 +48,11 @@ export const editorSlice = createSlice({
         setLang: (state, action: PayloadAction<string>) => {
             state.language = action.payload
         },
+        setFont: (state, action: PayloadAction<string>) => {
+            state.font = action.payload
+        },
     }
 })
 
 export default editorSlice.reducer
-export const { setRatio, setPadding, setTheme, setBar, setDarkMode, setRadious, setLang } = editorSlice.actions
+export const { setRatio, setPadding, setTheme, setBar, setDarkMode, setRadious, setLang, setFont } = editorSlice.actions

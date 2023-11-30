@@ -23,7 +23,7 @@ function SwitchBtn({ action, state, id }: TSwitchBtnProps) {
 
   return (
     <div>
-      <label className=" text-neutral-400 text-sm">
+      <label className=" text-neutral-400 text-xs">
         {id.charAt(0).toLocaleUpperCase() + id.slice(1)}
       </label>
       <motion.button

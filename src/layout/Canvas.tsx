@@ -2,7 +2,7 @@ import Editor from "../components/EditorPlayground";
 
 function Canvas() {
   return(
-    <section  className=" grow flex items-center justify-center ">
+    <section  className=" w-canvas flex items-center justify-center ">
       <Editor/>
     </section>
   );

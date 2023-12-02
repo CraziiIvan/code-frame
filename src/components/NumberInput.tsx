@@ -17,7 +17,7 @@ function NumberInput({ id, state, action }: TNumberInputProps) {
       </span>
       <input
       max={30}
-      min={0}
+      min={3}
         type="number"
         value={state}
         onChange={(e) => dispatch(action(Number(e.target.value)))}

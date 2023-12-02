@@ -4,6 +4,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Argon";
+    src: url("./assets/fonts/MonaspaceArgon-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Neon";
+    src: url("./assets/fonts/MonaspaceNeon-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Radon";
+    src: url("./assets/fonts/MonaspaceRadon-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Xenon";
+    src: url("./assets/fonts/MonaspaceXenon-Light.woff") format("woff");
+}
+
 .noScrollBar::-webkit-scrollbar {
     display: none;
 }

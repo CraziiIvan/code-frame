@@ -1,22 +1,12 @@
 import { FilePng, FileSvg } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 function Button() {
   const [visible, setVisible] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null)
   const dropDownRef = useRef<HTMLDivElement>(null)
-
-    // function outsideClickHandle(e: MouseEvent) {
-    //     if(e.target !== dropDownRef.current && e.target !== buttonRef.current) {
-    //         setVisible(false)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     window.addEventListener("click", outsideClickHandle)
-    // },[])
 
     useOutsideClick({dispatch: setVisible,  refs: [buttonRef, dropDownRef]})
 

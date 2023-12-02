@@ -20,7 +20,7 @@ const initialState: TInitialValue = {
     darkMode: false,
     radious: 20,
     language: "Javascript",
-    font: "Fira code"
+    font: "Fira Code"
 }
 
 export const editorSlice = createSlice({

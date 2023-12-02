@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      width: {
+        "canvas": "calc(100% - 256px)"
+      },
       fontFamily: {
         "primary": "'Plus Jakarta Sans', sans-serif",
       },

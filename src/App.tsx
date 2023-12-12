@@ -19,7 +19,7 @@ function App() {
           </div>
         </ContextProvider>
       </Suspense>
-      <a className="absolute bottom-3 left-3 text-sm text-neutral-500 dark:text-neutral-600 cursor-pointer">
+      <a href="https://github.com/CraziiIvan/code-frame" target="_blank" className="absolute bottom-3 left-3 text-sm text-neutral-500 dark:text-neutral-600 cursor-pointer">
         Github Repo <ArrowUpRight className="inline" />
       </a>
     </main>

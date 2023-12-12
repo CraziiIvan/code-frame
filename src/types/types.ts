@@ -11,7 +11,7 @@ export type TReducerState = {
   font: string;
   fontSize: string;
   padding: string;
-  theme: "pure" | "coal" | "purple" | "rose" | "slate";
+  theme: "pure" | "coal" | "purple" | "rose" | "mint";
   bar: string;
   darkMode: boolean;
   radious: string;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { TUseOutsideClickProps } from "../myType";
+import type { TUseOutsideClickProps } from "../types/types";
 
 function useOutsideClick({dispatch, refs}: TUseOutsideClickProps) {
 

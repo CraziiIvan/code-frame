@@ -5,25 +5,35 @@
 @tailwind utilities;
 
 @font-face {
+    font-family: "Fira Code";
+    src: url("./assets/fonts/FiraCode-Regular.woff") format("woff2");
+}
+
+@font-face {
     font-family: "Argon";
-    src: url("./assets/fonts/MonaspaceArgon-Light.woff") format("woff");
+    src: url("./assets/fonts/MonaspaceArgon-Light.woff") format("woff2");
 }
 
 @font-face {
     font-family: "Neon";
-    src: url("./assets/fonts/MonaspaceNeon-Light.woff") format("woff");
+    src: url("./assets/fonts/MonaspaceNeon-Light.woff") format("woff2");
 }
 
 @font-face {
     font-family: "Radon";
-    src: url("./assets/fonts/MonaspaceRadon-Light.woff") format("woff");
+    src: url("./assets/fonts/MonaspaceRadon-Light.woff") format("woff2");
 }
 
 @font-face {
     font-family: "Xenon";
-    src: url("./assets/fonts/MonaspaceXenon-Light.woff") format("woff");
+    src: url("./assets/fonts/MonaspaceXenon-Light.woff") format("woff2");
 }
 
 .noScrollBar::-webkit-scrollbar {
     display: none;
+}
+
+.noScrollBar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

@@ -1,46 +1,30 @@
-import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import { useOptionsContext } from "../hooks/useOptionsContext";
+import { TSwitchBtnProps } from "../types/types";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import {capitalizeAndAddSpace, cn} from "../utils/utils";
 
-type TSwitchBtnProps = {
-  action: ActionCreatorWithoutPayload;
-  state: boolean;
-  id: string;
-};
+function SwitchBtn({state, id }: TSwitchBtnProps) {
 
-function SwitchBtn({ action, state, id }: TSwitchBtnProps) {
-  const dispatch = useDispatch();
-
-  const dotVariants = {
-    switchOff: { translateX: 0, backgroundColor: "rgb(163 163 163)" },
-    switchOn: { translateX: "20px", backgroundColor: "rgb(250 250 250)" },
-  };
-
-  const switchVarients = {
-    switchOff: { backgroundColor: "rgb(245 245 245)" },
-    switchOn: { backgroundColor: "rgb(38 38 38)" },
-  };
+  const context = useOptionsContext()
+  const { darkMode } = context.state
+  const dispatch = context.dispatch
 
   return (
     <div>
-      <label className=" text-neutral-400 text-xs">
-        {id.charAt(0).toLocaleUpperCase() + id.slice(1)}
+      <label className=" text-neutral-400 dark:text-neutral-500 text-xs">
+        {capitalizeAndAddSpace(id)}
       </label>
-      <motion.button
+      <button
         onClick={() => {
-          dispatch(action());
+          dispatch({type: id, payload: !state});
         }}
-        variants={switchVarients}
-        animate={state ? "switchOn" : "switchOff"}
-        className={` p-1 w-[50px] mt-2 rounded-full  flex border border-neutral-200`}
+        className={cn("p-[3px] w-[48px] mt-2 rounded-full h-[30px] flex border border-neutral-200 dark:border-neutral-800", { "justify-start bg-neutral-100 dark:bg-neutral-900" : !darkMode, "justify-end bg-neutral-800 dark:bg-neutral-200" : darkMode } )}
       >
         <motion.div
-          variants={dotVariants}
-          animate={state ? "switchOn" : "switchOff"}
-          transition={{ type: "spring", stiffness: 500, damping: 40 }}
-          className=" w-5 h-5 rounded-full"
+          layout
+          className={cn("h-full aspect-square rounded-full", { "bg-neutral-400 dark:bg-neutral-50": !darkMode, "bg-neutral-50 dark:bg-neutral-900": darkMode })}
         />
-      </motion.button>
+      </button>
     </div>
   );
 }

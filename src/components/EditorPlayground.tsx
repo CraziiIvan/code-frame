@@ -3,61 +3,57 @@ import { useRef, useState } from "react";
 import Editor from "react-simple-code-editor";
 import hljs from "highlight.js";
 import { motion, useMotionValue } from "framer-motion";
-import bg from "../assets/pure-background.svg";
-import { useSelector } from "react-redux";
-import type { RootState } from "../store/configureStore";
-import { fontOptions } from "../list";
-
+import { fontOptions, editorStyles, bgStyles } from "../utils/lists";
+import EditorHeader from "./EditorHeader";
+import { useOptionsContext } from "../hooks/useOptionsContext";
+import {cn} from "../utils/utils";
 
 function EditorPlayground() {
-  const [title, setTitle] = useState("Untitled");
-  const [code, setCode] = useState('console.log("Welcome from Snaply")');
+  const [code, setCode] = useState('console.log("Welcome from Code Frame 👋")');
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const context = useOptionsContext();
+  const { language, font, fontSize, padding, theme, bar, darkMode, radious } =
+    context.state;
+  const canvasRef = context.canvasRef 
+
   const leftResizerRef = useRef<HTMLButtonElement>(null);
   const rightResizerRef = useRef<HTMLButtonElement>(null);
 
-  let prevWidth = 540
+  let prevWidth = 540;
   const width = useMotionValue(540);
-  const padding = useSelector((state: RootState) => state.editor.padding);
-  const radious = useSelector((state: RootState) => state.editor.radious);
-  const font = useSelector((state: RootState) => state.editor.font);
 
-  const fontFamily = (fontOptions as any)[font];
+  const fontFamily = fontOptions[font as keyof typeof fontOptions];
 
   return (
-    <motion.div
-      className={` bg-cover bg-center relative flex items-center`}
+    <div className="absolute top-editor left-1/2 -translate-x-1/2">
+      <motion.div
+      className={cn("bg-top flex items-center bg-gradient-to-br mb-20", bgStyles[theme] )}
       initial={{ padding: padding + "px" }}
       animate={{ padding: padding + "px" }}
-      style={{ width, backgroundImage: `url(${bg})` }}
-      ref={containerRef}
+      style={{ width}}
+      ref={canvasRef}
     >
-      <div style={{borderRadius: radious+ "px"}} className={` w-full bg-gradient-to-br from-neutral-800 to-neutral-900 bg-opacity-80 border-2 border-neutral-600 overflow-hidden shadow-lg`}>
-        <header className="py-3 relative flex items-center justify-center">
-          <div className="flex gap-x-2 absolute left-5">
-            <div className=" w-2.5 h-2.5 rounded-full shadow-inner bg-red-500" />
-            <div className=" w-2.5 h-2.5 rounded-full shadow-inner bg-yellow-500" />
-            <div className=" w-2.5 h-2.5 rounded-full shadow-inner bg-green-500" />
-          </div>
-          <input
-            type="text"
-            className=" text-center bg-transparent border-none outline-none text-sm font-medium text-neutral-500"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </header>
-        <div className="noScrollBar px-2 h-[280px] overflow-y-scroll text-white">
+      <div
+        style={{ borderRadius: radious + "px" }}
+        className={cn("w-full bg-gradient-to-br border overflow-hidden shadow-sm", (editorStyles as any)[theme][darkMode ? "dark": "light"])}
+      >
+        <EditorHeader bar={bar} />
+        <div
+          className={cn(
+            `noScrollBar px-2 min-h-[280px] overflow-hidden`,
+            { "text-neutral-100": darkMode, "text-neutral-900": !darkMode },
+          )}
+        >
           <Editor
             value={code}
             onValueChange={(code) => setCode(code)}
             highlight={(code) =>
-              hljs.highlight(code, { language: "javascript" }).value
+              hljs.highlight(code, { language }).value
             }
             padding={10}
             style={{
               fontFamily,
-              fontSize: 16,
+              fontSize: parseInt(fontSize),
             }}
             textareaClassName="focus:outline-none"
           />
@@ -68,16 +64,17 @@ function EditorPlayground() {
         drag="x"
         dragConstraints={{
           left: 0,
-          right: 0
+          right: 0,
         }}
         dragElastic={0}
         onDrag={(_, info) => {
-          if ( prevWidth - (info.offset.x * 2) > 440) {
-            width.set(prevWidth - (info.offset.x * 2))
+          const nextWidth = prevWidth - info.offset.x * 2;
+          if (nextWidth > 460 && nextWidth < 920) {
+            width.set(nextWidth);
           }
         }}
         onDragEnd={() => {
-          prevWidth = width.get()
+          prevWidth = width.get();
         }}
         className=" h-10 w-1.5 rounded-full bg-neutral-300 cursor-ew-resize absolute -left-1"
       />
@@ -86,20 +83,22 @@ function EditorPlayground() {
         drag="x"
         dragConstraints={{
           left: 0,
-          right: 0
+          right: 0,
         }}
         dragElastic={0}
         onDrag={(_, info) => {
-          if ( prevWidth + (info.offset.x * 2) > 440) {
-            width.set(prevWidth + (info.offset.x * 2))
+          const nextWidth = prevWidth + info.offset.x * 2;
+          if (nextWidth > 460 && nextWidth < 920) {
+            width.set(nextWidth);
           }
         }}
         onDragEnd={() => {
-          prevWidth = width.get()
+          prevWidth = width.get();
         }}
         className=" h-10 w-1.5 rounded-full bg-neutral-300 cursor-ew-resize absolute -right-1"
       />
     </motion.div>
+    </div>
   );
 }
 

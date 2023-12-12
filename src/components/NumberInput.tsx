@@ -1,27 +1,23 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import { TNumberInputProps } from "../types/types";
+import { useOptionsContext } from "../hooks/useOptionsContext";
+import { capitalizeAndAddSpace } from "../utils/utils";
 
-type TNumberInputProps = {
-  id: string;
-  state: number;
-  action: ActionCreatorWithPayload<number>;
-};
+function NumberInput({ id, state }: TNumberInputProps) {
 
-function NumberInput({ id, state, action }: TNumberInputProps) {
-  const dispatch = useDispatch();
+  const dispatch = useOptionsContext().dispatch
 
   return (
     <div>
-      <span className=" text-neutral-400 text-xs">
-        {id.charAt(0).toLocaleUpperCase() + id.slice(1)}
+      <span className=" text-neutral-400 dark:text-neutral-500 text-xs">
+        {capitalizeAndAddSpace(id)}
       </span>
       <input
       max={30}
       min={3}
         type="number"
-        value={state}
-        onChange={(e) => dispatch(action(Number(e.target.value)))}
-        className=" py-1 px-3 mt-2 bg-neutral-100 w-16 rounded-lg outline-none block text-neutral-500 border border-neutral-200"
+        value={parseInt(state)}
+        onChange={(e) => dispatch({type: id, payload: e.target.value})}
+        className=" py-1 px-3 mt-2 bg-neutral-100 dark:bg-neutral-900 w-16 rounded-lg outline-none block text-neutral-500 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800"
       />
     </div>
   );

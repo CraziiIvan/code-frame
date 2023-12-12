@@ -1,6 +1,5 @@
 import { MoonStars, SunDim } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
 
 type TDarkModeSwitchProps = {
   isDarkTheme: boolean,

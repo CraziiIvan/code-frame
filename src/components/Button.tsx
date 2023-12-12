@@ -5,7 +5,6 @@ import useOutsideClick from "../hooks/useOutsideClick";
 import { exportImg } from "../utils/export";
 import { useOptionsContext } from "../hooks/useOptionsContext";
 import { cn } from "../utils/utils";
-import { toast } from "sonner";
 
 function Button() {
   const [visible, setVisible] = useState(false);

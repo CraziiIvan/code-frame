@@ -1,5 +1,5 @@
 import "../index.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Editor from "react-simple-code-editor";
 import hljs from "highlight.js";
 import { motion, useMotionValue } from "framer-motion";
@@ -23,6 +23,17 @@ function EditorPlayground() {
   const width = useMotionValue(540);
 
   const fontFamily = fontOptions[font as keyof typeof fontOptions];
+
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github${darkMode ? "-dark": ""}.min.css`;
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, [darkMode]);
 
   return (
     <div className="absolute top-editor left-1/2 -translate-x-1/2">

@@ -16,10 +16,6 @@ export default {
       inset: {
         editor: "calc(50% - 200px)",
       },
-      backgroundImage: {
-        "pure": "url('./src/assets/background/pure_bg.svg')",
-        "space": "url('./src/assets/background/space_bg.svg')",
-      },
       gradientColorStops: {
         "purple-1000": "#25063D"
       }

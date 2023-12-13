@@ -37,3 +37,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+.bg-pure {
+    background-image: url("./assets/pure-background.svg");
+}

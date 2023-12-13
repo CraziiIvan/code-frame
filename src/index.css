@@ -41,3 +41,21 @@
 .bg-pure {
     background-image: url("./assets/pure-background.svg");
 }
+
+.canvas-scroll::-webkit-scrollbar {
+    width: 8px;
+    padding: 2px;
+}
+ 
+.canvas-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+ 
+.canvas-scroll::-webkit-scrollbar-thumb {
+    background: rgb(205, 205, 205);
+    border-radius: 5px;
+}
+ 
+.canvas-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgb(193, 193, 193);
+}

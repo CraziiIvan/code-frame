@@ -37,8 +37,10 @@ function EditorPlayground() {
 
   return (
     <div className="absolute top-editor left-1/2 -translate-x-1/2">
+
+    <div className="relative flex items-center mb-20">
       <motion.div
-      className={cn("bg-top flex items-center bg-gradient-to-br mb-20", bgStyles[theme] )}
+      className={cn("bg-top flex items-center bg-gradient-to-br", bgStyles[theme] )}
       initial={{ padding: padding + "px" }}
       animate={{ padding: padding + "px" }}
       style={{ width}}
@@ -70,6 +72,7 @@ function EditorPlayground() {
           />
         </div>
       </div>
+    </motion.div>
       <motion.button
         ref={leftResizerRef}
         drag="x"
@@ -108,7 +111,7 @@ function EditorPlayground() {
         }}
         className=" h-10 w-1.5 rounded-full bg-neutral-300 cursor-ew-resize absolute -right-1"
       />
-    </motion.div>
+    </div>
     </div>
   );
 }
